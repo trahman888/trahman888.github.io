@@ -32,7 +32,7 @@ export default function Home() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={schemaData?.url || "https://trahman888.github.io/"} />
         <meta property="og:title" content={schemaData ? `${schemaData.name} — ${schemaData.jobTitle}` : "Tanzila Rahman — Senior Research Scientist | Generative AI"} />
-        <meta property="og:description" content="Explore peer-reviewed research, CVPR/ICLR publications, and computer vision projects by Tanzila Rahman." />
+        <meta property="og:description" content="Explore peer-reviewed research, ECCV/CVPR/ICLR publications, and computer vision projects by Tanzila Rahman." />
         <meta property="og:image" content={schemaData?.image || "https://trahman888.github.io/images/TanzilaRahman.webp"} />
 
         <meta property="twitter:card" content="summary_large_image" />
