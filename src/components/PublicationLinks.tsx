@@ -10,7 +10,7 @@ export function PublicationLinks({
 }) {
   const {links} = publication;
   return Object.keys(links || {}).length > 0 && (
-    <div className="pub-links flex flex-wrap items-center gap-2 mt-2">
+    <div className="pub-links flex flex-wrap items-center gap-2 mt-3 sm:mt-2" data-testid={`pub-links-${idx}`}>
       {Object.entries(links).map(([label, url]) => (
         <a
           key={label}
