@@ -4,6 +4,14 @@ import type { NewsItem } from "../lib/types";
 
 export const news: NewsItem[] = [
   {
+    date: "September 2026",
+    title: "Two Papers accepted at NeurIPS 2026",
+  },
+  {
+    date: "July 2026",
+    title: "Paper accepted at ECCVW 2026",
+  },
+  {
     date: "Jan 2026",
     title: "Paper accepted at ICLR 2026",
   },
