@@ -1,11 +1,11 @@
 {
   "profileUrl": "https://scholar.google.com/citations?user=7GKKBLkAAAAJ&hl=en",
-  "lastUpdate": "2026-09-28T06:46:28.050196+00:00",
+  "lastUpdate": "2026-10-05T07:22:09.008074+00:00",
   "totals": {
-    "citations": 1114,
+    "citations": 1116,
     "citationsSince": {
       "year": 2022,
-      "value": 929
+      "value": 931
     },
     "hIndex": 12,
     "hIndexSince": {
@@ -61,15 +61,15 @@
     },
     {
       "year": 2024,
-      "count": 172
+      "count": 171
     },
     {
       "year": 2025,
-      "count": 192
+      "count": 193
     },
     {
       "year": 2026,
-      "count": 148
+      "count": 151
     }
   ]
 }
