@@ -34,7 +34,7 @@ export default function Publications() {
           className="flex flex-col gap-3"
         >
           <div className="flex items-center gap-3 text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
-            <span className="text-slate-400">02</span>
+            <span className="text-slate-400">03</span>
             <span className="inline-block h-px w-8 bg-slate-300" />
             Research
           </div>

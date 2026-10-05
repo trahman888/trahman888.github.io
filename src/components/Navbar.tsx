@@ -6,8 +6,8 @@ import { useCompressed } from "../contexts/compress-context.ts";
 
 const SECTIONS: { id: string; label: string }[] = [
   { id: "about", label: "About" },
-  { id: "research", label: "Research" },
   { id: "news", label: "News" },
+  { id: "research", label: "Research" },
   { id: "contact", label: "Contact" },
 ];
 

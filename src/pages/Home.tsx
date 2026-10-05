@@ -54,8 +54,8 @@ export default function Home() {
           <Hero />
           <About />
           <Impact />
-          <Publications />
           <News />
+          <Publications />
           <Footer />
         </main>
       </div>
