@@ -83,18 +83,18 @@ export default function News() {
               )}
             </motion.li>
           ))}
+          <li className="mb-10 ml-6 sm:ml-8 group h-0">
+            <span className="absolute w-3 h-3 bg-white border-2 border-slate-300 rounded-full -left-[6.5px] group-hover:border-slate-900 transition-colors" />
+            <button
+              type="button"
+              onClick={handleToggleNews}
+              className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-900 -mt-4"
+              aria-expanded={visibleCount >= news.length}
+            >
+              {hasMoreNews ? "Show more" : "Show less"}
+            </button>
+          </li>
         </ol>
-
-        <div className="mt-6 flex justify-center">
-          <button
-            type="button"
-            onClick={handleToggleNews}
-            className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-900"
-            aria-expanded={visibleCount >= news.length}
-          >
-            {hasMoreNews ? "Show more" : "Show less"}
-          </button>
-        </div>
       </div>
     </section>
   );
