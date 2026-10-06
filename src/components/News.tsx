@@ -88,7 +88,7 @@ export default function News() {
             <button
               type="button"
               onClick={handleToggleNews}
-              className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-900 -mt-4"
+              className="rounded-full border border-slate-300 bg-white cursor-pointer px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-900 -mt-4"
               aria-expanded={visibleCount >= news.length}
             >
               {hasMoreNews ? "Show more" : "Show less"}
