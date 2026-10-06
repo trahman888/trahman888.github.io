@@ -20,10 +20,6 @@ export const news: NewsItem[] = [
     title: "Paper accepted at CRV 2025 as Oral",
   },
   {
-    date: "Mar 2025",
-    title: "Paper submitted to ICCV 2025",
-  },
-  {
     date: "Jan 2025",
     title: "Organizing workshop at CVPR 2025",
     description:

@@ -1,9 +1,26 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { news } from "../data";
 import { RichText } from "./ui/RichText";
+import { INITIAL_VISIBLE_NEWS } from "../lib/constants";
+
+
 
 export default function News() {
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_NEWS);
+  const visibleNews = news.slice(0, visibleCount);
+  const hasMoreNews = news.length > visibleCount;
+
+  const handleToggleNews = () => {
+    if (hasMoreNews) {
+      setVisibleCount((prev) => Math.min(prev + INITIAL_VISIBLE_NEWS, news.length));
+      return;
+    }
+
+    setVisibleCount(INITIAL_VISIBLE_NEWS);
+  };
+
   return (
     <section
       id="news"
@@ -32,7 +49,7 @@ export default function News() {
           className="mt-12 relative border-l border-slate-200 ml-2 sm:ml-3"
           data-testid="news-timeline"
         >
-          {news.map((item, idx) => (
+          {visibleNews.map((item, idx) => (
             <motion.li
               key={idx}
               initial={{ opacity: 0, x: -8 }}
@@ -67,6 +84,17 @@ export default function News() {
             </motion.li>
           ))}
         </ol>
+
+        <div className="mt-6 flex justify-center">
+          <button
+            type="button"
+            onClick={handleToggleNews}
+            className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-900"
+            aria-expanded={visibleCount >= news.length}
+          >
+            {hasMoreNews ? "Show more" : "Show less"}
+          </button>
+        </div>
       </div>
     </section>
   );
