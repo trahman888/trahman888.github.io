@@ -30,7 +30,12 @@ OUT_FILE = REPO_ROOT / "public" / "data" / "scholar.json"
 
 def _try_fetch():
     """Try to fetch the author profile. Raises on failure."""
-    from scholarly import scholarly, ProxyGenerator
+    try:
+        from scholarly import scholarly, ProxyGenerator  # type: ignore[import-not-found]
+    except ImportError as exc:  # pragma: no cover
+        raise RuntimeError(
+            "Missing optional dependency 'scholarly'. Install with: pip install scholarly fake-useragent"
+        ) from exc
 
     # Attempt 1: direct request
     try:
@@ -79,6 +84,17 @@ def _build_json(author) -> str:
     return json.dumps(data, indent=2) + "\n"
 
 
+def _totals_changed(existing_data: dict | None, new_totals: dict) -> bool:
+    if not existing_data:
+        return True
+
+    existing_totals = existing_data.get("totals") or {}
+    for key in ("citations", "hIndex", "i10Index"):
+        if existing_totals.get(key) != new_totals.get(key):
+            return True
+    return False
+
+
 def main() -> int:
     try:
         author = _try_fetch()
@@ -92,9 +108,17 @@ def main() -> int:
         return 0
 
     js = _build_json(author)
+    new_data = json.loads(js)
+    existing_data = None
 
-    if OUT_FILE.exists() and OUT_FILE.read_text(encoding="utf-8") == js:
-        print("No change in Scholar data.")
+    if OUT_FILE.exists():
+        try:
+            existing_data = json.loads(OUT_FILE.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            existing_data = None
+
+    if not _totals_changed(existing_data, new_data.get("totals", {})):
+        print("No change in Scholar totals (citations, hIndex, i10Index).")
         return 0
 
     OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
