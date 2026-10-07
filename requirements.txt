@@ -1,3 +1,4 @@
 scholarly>=1.7.11
+bibtexparser==1.2.0
 free-proxy==1.0.6
 fake-useragent
