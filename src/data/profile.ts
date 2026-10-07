@@ -1,6 +1,7 @@
 // Update this file to change personal info shown on the site.
 // All other content lives in /src/data/publications.js and /src/data/news.js.
 
+import { GOOGLE_SCHOLAR_AUTHOR_ID } from "../lib/constants";
 import { PublicationCategory, type Profile } from "../lib/types";
 
 export const profile: Profile = {
@@ -35,7 +36,7 @@ export const profile: Profile = {
     "trahman8@cs.ubc.ca",
   ],
   links: {
-    googleScholar: "https://scholar.google.com/citations?user=7GKKBLkAAAAJ&hl=en",
+    googleScholar: `https://scholar.google.com/citations?user=${GOOGLE_SCHOLAR_AUTHOR_ID}&hl=en`,
     linkedin: "https://www.linkedin.com/in/tanzila-rahman-91414a22/",
     oldSite: "https://sites.google.com/view/tanzila-rahman/home",
     cv: "tanzila_rahman_resume.pdf", // add a hosted CV PDF URL when available

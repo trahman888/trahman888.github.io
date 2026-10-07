@@ -8,6 +8,7 @@ import { formatAuthors, isAllowPublicationPage, isFirstAuthor } from "../lib/uti
 import { PublicationThumb } from "./PublicationThumb";
 import { PublicationLinks } from "./PublicationLinks";
 import type { PublicationCategory } from "../lib/types";
+import { GOOGLE_SCHOLAR_AUTHOR_ID } from "../lib/constants";
 
 export default function Publications() {
   const [filter, setFilter] = useState<"All" | PublicationCategory>("All");
@@ -45,7 +46,7 @@ export default function Publications() {
             Peer-reviewed work in computer vision, multimodal learning, and
             generative AI. Filter by topic, or view{" "}
             <a
-              href="https://scholar.google.com/citations?user=7GKKBLkAAAAJ&hl=en"
+              href={`https://scholar.google.com/citations?user=${GOOGLE_SCHOLAR_AUTHOR_ID}&hl=en`}
               target="_blank"
               rel="noreferrer"
               className="text-slate-900 underline underline-offset-4 decoration-slate-300 hover:decoration-slate-900 transition-colors"
