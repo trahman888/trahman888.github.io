@@ -37,6 +37,14 @@ export interface NewsItem {
   };
 }
 
+export interface Award {
+  title: string;
+  date?: string;
+  organization?: string;
+  description?: string;
+  declined?: boolean;
+}
+
 interface PublicationSectionBlockHeroGrid {
   type: "hero-grid";
   left: string[];

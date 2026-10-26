@@ -6,6 +6,7 @@ import About from "../components/About";
 import Impact from "../components/Impact";
 import Publications from "../components/Publications";
 import News from "../components/News";
+import Awards from "../components/Awards";
 import Footer from "../components/Footer";
 import type { PersonSchema } from "../lib/types";
 import { generateSchema } from "../data";
@@ -56,6 +57,7 @@ export default function Home() {
           <Impact />
           <News />
           <Publications />
+          <Awards />
           <Footer />
         </main>
       </div>

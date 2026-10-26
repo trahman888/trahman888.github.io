@@ -18,7 +18,7 @@ export default function Footer() {
           className="flex flex-col gap-3"
         >
           <div className="flex items-center gap-3 text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
-            <span className="text-slate-500">04</span>
+            <span className="text-slate-500">05</span>
             <span className="inline-block h-px w-8 bg-slate-700" />
             Contact
           </div>

@@ -8,6 +8,7 @@ const SECTIONS: { id: string; label: string }[] = [
   { id: "about", label: "About" },
   { id: "news", label: "News" },
   { id: "research", label: "Research" },
+  { id: "awards", label: "Awards" },
   { id: "contact", label: "Contact" },
 ];
 
