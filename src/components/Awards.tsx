@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { awards } from "../data";
 import type { Award } from "../lib/types";
+import { RichText } from "./ui/RichText";
 
 const getAwardYear = (award: Award) =>
   Number(award.date?.match(/\d{4}/)?.[0] ?? 0);
@@ -50,16 +51,16 @@ export default function Awards() {
               </time>
               <div className="min-w-0">
                 <h3 className="text-sm font-semibold tracking-tight text-slate-900">
-                  {award.title}
+                  <RichText>{award.title}</RichText>
                 </h3>
                 {award.organization && (
                   <p className="mt-0.5 text-sm text-slate-600">
-                    {award.organization}
+                    <RichText>{award.organization}</RichText>
                   </p>
                 )}
                 {award.description && (
                   <p className="mt-0.5 text-sm text-slate-600">
-                    {award.description}
+                    <RichText>{award.description}</RichText>
                   </p>
                 )}
                 {award.declined && (
