@@ -4,14 +4,14 @@ Fetch Google Scholar metrics for Tanzila Rahman and regenerate
 public/data/scholar.json.
 
 Local usage:
-    pip install scholarly fake-useragent
+    pip install -r requirements.txt
     python scripts/scrape_scholar.py
 
 In CI: see .github/workflows/update-scholar.yml.
 
 NOTE: Google Scholar aggressively rate-limits cloud IPs. If the scrape
 fails (captcha / 429 / network), this script logs a warning and exits 0
-WITHOUT modifying scholar.ts, so the workflow does not fail noisily and
+WITHOUT modifying scholar.json, so the workflow does not fail noisily and
 the previously-committed values are preserved.
 """
 from __future__ import annotations
