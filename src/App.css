@@ -21,6 +21,11 @@ html {
   color: #ffffff;
 }
 
+html.dark ::selection {
+  background-color: #f1f5f9;
+  color: #0b1120;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

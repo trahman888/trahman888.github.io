@@ -5,7 +5,7 @@ Academic portfolio site for Tanzila Rahman (deployed to GitHub Pages at https://
 ## Stack
 
 - React 19 + TypeScript (~6.0) + Vite 8
-- Tailwind CSS v4 via `@tailwindcss/vite` (`src/index.css` is just `@import "tailwindcss"`; there is **no** `tailwind.config`)
+- Tailwind CSS v4 via `@tailwindcss/vite` (configured in CSS in `src/index.css`; there is **no** `tailwind.config`)
 - react-router-dom v7 (`BrowserRouter`), react-helmet-async (SEO/meta), framer-motion (animations), recharts (citation chart), lucide-react (icons), react-ga4 (analytics)
 - Python 3.11 + `scholarly` for the Google Scholar scraper
 
@@ -35,7 +35,7 @@ In CI these come from repo secrets (see `deploy.yml`).
 
 ```
 src/
-  main.tsx              StrictMode > HelmetProvider > CompressProvider > App
+  main.tsx              StrictMode > HelmetProvider > ThemeProvider > CompressProvider > App
   App.tsx               Routes: /  ·  /publications  ·  /publications/:publicationId  ·  * (NotFound); GA init
   pages/
     Home.tsx            Helmet SEO + JSON-LD; Hero, About, Impact, News, Publications, Awards, Footer
@@ -45,6 +45,7 @@ src/
                         Footer, NoticeBar, Section, PublicationThumb, PublicationLinks, ui/RichText)
   contexts/             CompressContext ("compact view" toggle; adds `compressed` class to <html>,
                         persisted in localStorage key `siteCompressed`)
+                        ThemeContext (light/dark; adds `dark` class to <html>, key `siteTheme`)
   data/                 ← ALL CONTENT LIVES HERE (re-exported via data/index.ts)
   lib/
     types.ts            All shared types and the PublicationCategory enum
@@ -76,6 +77,12 @@ Strings rendered through `<RichText>` support a tiny markdown subset (`src/lib/r
 - `*bold*` (**single** asterisks, not `**`)
 - `[label](url)` links (external URLs open in a new tab)
 - `![alt](url)` images
+- Class syntax `{ .a .b }` (leading dots optional), placed directly after a token:
+  - `[text]{ .c }` renders `<span class="c">`, and the inner text is still rich-rendered.
+  - `[l](u){ .c }`, `*b*{ .c }` and `![a](u){ .c }` append `c` to the `<a>`, `<strong>` or `<img>` itself, so it can override `LINK_CLASS`.
+
+  Classes are resolved first (`classify`), then images, then links, then bold. `make{Class,Bold,Link,Image}Text(..., ...classes)` generate the syntax, and `clearRich()` strips all markup, including classes.
+  **Keep a space before the closing `}`** when writing classes by hand in data or JSON: Tailwind's scanner skips a class name directly followed by `}` (`{.italic}` generates no CSS).
 
 Author strings go through `formatAuthors()`, which links co-authors from `authors.ts` and bolds `profile.name`.
 
@@ -89,6 +96,15 @@ A publication gets a detail page at `/publications/:id` only when **all** of the
 `pageContent.sections[].blocks[]` are discriminated by `type`: `text`, `list`, `hero-grid`, `gallery`, `comparison`. They are rendered by `components/Section.tsx`. Sections display as tabs (only the active one is visible), not as scroll anchors. To add a block type, update the union in `lib/types.ts` and add a `switch` case in `Section.tsx`.
 
 Home page SEO keywords use `getFirstAuthorPublications()`.
+
+## Theming (light / dark)
+
+- `ThemeToggle` (navbar on desktop and mobile, and the NotFound header) flips the theme via `useTheme()`. The visitor's choice is saved in localStorage. Until they choose, the OS `prefers-color-scheme` is followed.
+- An inline script in `index.html` sets `html.dark` before first paint to prevent a flash. It hardcodes the `siteTheme` key, so keep it in sync with `LS_SITE_THEME_KEY` and `theme-provider.tsx`.
+- **Dark mode is a palette remap, not `dark:` classes everywhere.** In `src/index.css`, `html.dark` redefines `--color-white` and `--color-slate-50…950` to an inverted dark scale. Light mode uses Tailwind's defaults unchanged. So:
+  - **Build UI with `white` + `slate-*` utilities** and it themes automatically (`bg-white` = page/card surface, `text-slate-900` = strongest text, `bg-slate-900 text-white` = primary button, which inverts correctly).
+  - Other color families, arbitrary values (`bg-[#…]`) and inline hex styles don't remap. Add a `dark:` variant (class-based `@custom-variant dark`) or pick colors from `useTheme()`, as `Impact.tsx` does for the recharts palette (`CHART_COLORS`).
+  - Surfaces that are dark in **both** themes (Footer, PublicationThumb placeholder, NotFound tile, NoticeBar) carry `theme-fixed`, which restores the default palette for that subtree so `text-white` stays white. Use it for any new always-dark block.
 
 ## Google Scholar pipeline
 

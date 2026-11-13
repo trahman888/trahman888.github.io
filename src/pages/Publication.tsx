@@ -116,7 +116,7 @@ export default function Publication() {
         ) : publicationId ? (
           <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 py-20 sm:py-28">
             <h1 className="text-3xl font-bold mb-4">Publication not found</h1>
-            <p className="text-gray-700">The requested publication could not be found.</p>
+            <p className="text-gray-700 dark:text-slate-600">The requested publication could not be found.</p>
           </div>
         ) : (
           <Publications />

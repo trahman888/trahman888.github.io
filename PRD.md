@@ -36,6 +36,7 @@ Build a modern academic portfolio website for Tanzila Rahman (Senior Research Sc
 - "Compact view" toggle persisted in localStorage
 - OpenGraph / Twitter card meta, canonical URL, JSON-LD schema
 - GitHub Actions: Pages deploy, Scholar refresh, CodeQL
+- Light/dark theme toggle in the navbar (follows OS preference until chosen, saved per visitor)
 - Deep links survive hard refresh on GitHub Pages (build-time route entry points + `404.html` fallback)
 
 ## Backlog
@@ -44,6 +45,5 @@ P1
 - Add GitHub / ORCID / Twitter links if the user wants them
 
 P2
-- Light/dark toggle
 - "Talks & Service" section
 - Tag-based publication search

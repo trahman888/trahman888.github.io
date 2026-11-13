@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Maximize2, Minimize2 } from "lucide-react";
 import { profile } from "../data";
 import { useCompressed } from "../contexts/compress-context.ts";
+import ThemeToggle from "./ThemeToggle";
 
 const SECTIONS: { id: string; label: string }[] = [
   { id: "about", label: "About" },
@@ -109,10 +110,13 @@ export default function Navbar({ page }: { page?: string }) {
           >
             {compressed ? <Maximize2 size={18} /> : <Minimize2 size={18} />}
           </button>
+          <ThemeToggle className="-ml-6" />
         </nav>
 
+        <div className="md:hidden flex items-center gap-2">
+        <ThemeToggle />
         <button
-          className="md:hidden p-2 -mr-2 rounded-md hover:bg-slate-100 text-slate-700"
+          className="p-2 -mr-2 rounded-md hover:bg-slate-100 text-slate-700"
           onClick={() => setOpen((o) => !o)}
           aria-label="Toggle menu"
           data-testid="nav-mobile-toggle"
@@ -129,6 +133,7 @@ export default function Navbar({ page }: { page?: string }) {
             )}
           </svg>
         </button>
+        </div>
       </div>
 
       {open && (

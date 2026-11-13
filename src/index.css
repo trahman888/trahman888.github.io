@@ -1,5 +1,54 @@
 @import "tailwindcss";
 
+/* Dark mode is class-based: `dark` on <html> (see ThemeProvider + inline script in index.html). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Dark theme = remapped palette. The site is built almost entirely from Tailwind's
+ * `white` + `slate-*` colors, so in dark mode we invert that scale instead of adding
+ * `dark:` variants everywhere. Light mode is untouched (Tailwind defaults).
+ */
+html.dark {
+  color-scheme: dark;
+  --color-white: #0b1120;     /* page / card background */
+  --color-slate-50: #0f172a;  /* subtle surfaces */
+  --color-slate-100: #172033; /* chips, hover backgrounds */
+  --color-slate-200: #1e293b; /* borders */
+  --color-slate-300: #334155; /* strong borders */
+  --color-slate-400: #64748b; /* faint text / icons */
+  --color-slate-500: #94a3b8; /* secondary text */
+  --color-slate-600: #b4c0cf; /* body text */
+  --color-slate-700: #cbd5e1;
+  --color-slate-800: #e2e8f0;
+  --color-slate-900: #f1f5f9; /* headings, primary buttons */
+  --color-slate-950: #f8fafc;
+}
+
+/*
+ * `theme-fixed` opts a subtree out of the remap, for surfaces that are dark in
+ * both themes (footer, publication thumbnails, 404 tile, notice bar).
+ * Values are Tailwind v4's defaults.
+ */
+html.dark .theme-fixed {
+  --color-white: #fff;
+  --color-slate-50: oklch(98.4% 0.003 247.858);
+  --color-slate-100: oklch(96.8% 0.007 247.896);
+  --color-slate-200: oklch(92.9% 0.013 255.508);
+  --color-slate-300: oklch(86.9% 0.022 252.894);
+  --color-slate-400: oklch(70.4% 0.04 256.788);
+  --color-slate-500: oklch(55.4% 0.046 257.417);
+  --color-slate-600: oklch(44.6% 0.043 257.281);
+  --color-slate-700: oklch(37.2% 0.044 257.287);
+  --color-slate-800: oklch(27.9% 0.041 260.031);
+  --color-slate-900: oklch(20.8% 0.042 265.755);
+  --color-slate-950: oklch(12.9% 0.042 264.695);
+}
+
+html.dark body {
+  background-color: var(--color-white);
+  color: var(--color-slate-900);
+}
+
 body {
   margin: 0;
   font-family:
@@ -95,4 +144,9 @@ code {
   &:hover::after {
     opacity: 1;
   }
+}
+
+html.dark .popup::after {
+  background-color: #f1f5f9;
+  color: #0b1120;
 }

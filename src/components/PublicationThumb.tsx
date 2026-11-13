@@ -48,7 +48,7 @@ export function PublicationThumb({ pub, idx, shape = "square" }: { pub: Publicat
 
   return (
     <div
-      className="pub-thumb relative w-full sm:w-28 sm:h-28 md:w-32 md:h-32 aspect-[16/9] sm:aspect-square flex-shrink-0 overflow-hidden rounded-lg border border-slate-200"
+      className="theme-fixed pub-thumb relative w-full sm:w-28 sm:h-28 md:w-32 md:h-32 aspect-[16/9] sm:aspect-square flex-shrink-0 overflow-hidden rounded-lg border border-slate-200 dark:border-slate-800"
       style={{
         backgroundImage: `linear-gradient(135deg, ${p.from} 0%, ${p.to} 100%)`,
       }}

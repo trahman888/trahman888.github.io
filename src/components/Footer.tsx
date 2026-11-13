@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <section
       id="contact"
-      className="py-20 sm:py-28 border-t border-slate-100 bg-slate-900 text-slate-100"
+      className="theme-fixed py-20 sm:py-28 border-t border-slate-100 dark:border-slate-800 bg-slate-900 text-slate-100"
       data-testid="contact-section"
     >
       <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">

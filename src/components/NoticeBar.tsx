@@ -39,7 +39,7 @@ export default function NoticeBar() {
 
   return (
     <div
-      className="notice-bar sticky top-0 z-50 text-white flex items-center justify-between gap-4 px-4 py-2 shadow-md"
+      className="theme-fixed notice-bar sticky top-0 z-50 text-white flex items-center justify-between gap-4 px-4 py-2 shadow-md"
       style={{ backgroundColor: notice.color || "#dc2626" }}
       role="region"
       aria-live="polite"

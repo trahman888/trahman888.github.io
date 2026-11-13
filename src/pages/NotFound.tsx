@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { ArrowLeft, Home } from "lucide-react";
 import { profile } from "../data";
+import ThemeToggle from "../components/ThemeToggle";
 
 export default function NotFound() {
   return (
@@ -25,14 +26,17 @@ export default function NotFound() {
                 · Research Scientist
               </span>
             </a>
-            <a
-              href="/"
-              data-testid="nf-back-link"
-              className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
-            >
-              <ArrowLeft size={14} />
-              Back to home
-            </a>
+            <div className="flex items-center gap-6">
+              <a
+                href="/"
+                data-testid="nf-back-link"
+                className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+              >
+                <ArrowLeft size={14} />
+                Back to home
+              </a>
+              <ThemeToggle />
+            </div>
           </div>
         </header>
 
@@ -103,7 +107,7 @@ export default function NotFound() {
                 aria-hidden="true"
               >
                 <div
-                  className="relative aspect-square w-[260px] lg:w-[300px] rounded-2xl border border-slate-200 overflow-hidden"
+                  className="theme-fixed relative aspect-square w-[260px] lg:w-[300px] rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden"
                   style={{
                     backgroundImage:
                       "linear-gradient(135deg, #0F172A 0%, #1E293B 100%)",

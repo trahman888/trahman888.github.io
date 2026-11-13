@@ -51,7 +51,7 @@ export default function Section({ publication, section, visible }: { publication
                     ))}
                   </div>
                   <div className="rounded-md border border-dashed border-pageBorder
-          bg-[#f3f6ff] p-2.5 text-[0.85rem] text-pageMuted">
+          bg-[#f3f6ff] dark:bg-slate-50 p-2.5 text-[0.85rem] text-pageMuted">
                     <PublicationThumb pub={publication} idx={0} shape="landscape" />
                     {block.rightPlaceholder ||
                       "Hero illustration placeholder"}
@@ -65,7 +65,7 @@ export default function Section({ publication, section, visible }: { publication
           grid-cols-[repeat(auto-fit,minmax(160px,1fr))]">
                   {(block.items || []).map((it, i) => (
                     <div key={i} className="rounded-md border border-dashed border-pageBorder
-            bg-[#fafafa] p-2 text-[0.8rem] text-pageMuted">
+            bg-[#fafafa] dark:bg-slate-50 p-2 text-[0.8rem] text-pageMuted">
                       <strong>{it.title}</strong>
                       <br />
                       <span><RichText>{it.description}</RichText></span>
@@ -79,7 +79,7 @@ export default function Section({ publication, section, visible }: { publication
                 <div key={idx} className="grid gap-4 mt-3
           grid-cols-[repeat(auto-fit,minmax(240px,1fr))]">
                   {(block.columns || []).map((col, i) => (
-                    <div key={i} className="p-[10px] rounded-md border border-pageBorder bg-[#fafafa] text-[0.9rem]">
+                    <div key={i} className="p-[10px] rounded-md border border-pageBorder bg-[#fafafa] dark:bg-slate-50 text-[0.9rem]">
                       <strong>{col.title}</strong>
                       <ul>
                         {(col.items || []).map((item, j) => (

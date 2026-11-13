@@ -97,7 +97,7 @@ export default function Publications() {
                   exit={{ opacity: 0, y: -4 }}
                   transition={{ duration: 0.3, delay: idx * 0.03 }}
                   className={`publication-card group relative flex flex-col sm:flex-row gap-5 sm:gap-6 border bg-white rounded-xl p-5 sm:p-6 hover:-translate-y-[1px] transition-all duration-200 ${hasFirstAuthor
-                    ? "border-amber-300 sm:border-l-4 sm:border-t-0 sm:border-r-0 sm:border-b-0"
+                    ? "border-amber-300 dark:border-amber-500/60 sm:border-l-4 sm:border-t-0 sm:border-r-0 sm:border-b-0"
                     : "border-slate-200 hover:border-slate-300"
                     }`}
                   data-testid={`publication-card-${idx}`}
@@ -114,7 +114,7 @@ export default function Publications() {
                         {pub.venueShort}
                       </span>
                       {hasFirstAuthor && (
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold bg-amber-100 text-amber-800">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold bg-amber-100 text-amber-800 dark:bg-amber-400/15 dark:text-amber-300">
                           First author
                         </span>
                       )}
