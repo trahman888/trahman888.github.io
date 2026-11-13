@@ -82,7 +82,6 @@ Most text fields support a small markdown subset:
 - `*bold*` (single asterisks)
 - `[label](https://example.com)` for links
 - `![alt text](images/foo.png)` for images
-- `[some text]{ .text-red-500 .italic }` to style text with Tailwind classes. Classes can also be added right after a link, bold text or image, e.g. `[label](https://example.com){ .text-blue-600 }`. Leave a space before the closing `}`, otherwise Tailwind won't generate CSS for the last class.
 
 ### Publication explainer pages
 

@@ -77,12 +77,8 @@ Strings rendered through `<RichText>` support a tiny markdown subset (`src/lib/r
 - `*bold*` (**single** asterisks, not `**`)
 - `[label](url)` links (external URLs open in a new tab)
 - `![alt](url)` images
-- Class syntax `{ .a .b }` (leading dots optional), placed directly after a token:
-  - `[text]{ .c }` renders `<span class="c">`, and the inner text is still rich-rendered.
-  - `[l](u){ .c }`, `*b*{ .c }` and `![a](u){ .c }` append `c` to the `<a>`, `<strong>` or `<img>` itself, so it can override `LINK_CLASS`.
 
-  Classes are resolved first (`classify`), then images, then links, then bold. `make{Class,Bold,Link,Image}Text(..., ...classes)` generate the syntax, and `clearRich()` strips all markup, including classes.
-  **Keep a space before the closing `}`** when writing classes by hand in data or JSON: Tailwind's scanner skips a class name directly followed by `}` (`{.italic}` generates no CSS).
+The pipeline is `renderRichText()`: passes run in order **images → links → bold** (`RENDER_PASSES`), each over the plain-string parts left by the previous one. Output is re-keyed by position. The same regexes back the `make…Text()` generators and the `clear…()` strippers (`clearRich()` = all). All splitting goes through one `tokenize()` helper, which uses `matchAll`, so the shared `/g` regexes hold no state. To add markup, write a `tokenize`-based pass and insert it into `RENDER_PASSES` at the right precedence.
 
 Author strings go through `formatAuthors()`, which links co-authors from `authors.ts` and bolds `profile.name`.
 
