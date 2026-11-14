@@ -91,6 +91,10 @@ A publication gets a detail page at `/publications/:id` only when **all** of the
 
 `pageContent.sections[].blocks[]` are discriminated by `type`: `text`, `list`, `hero-grid`, `gallery`, `comparison`. They are rendered by `components/Section.tsx`. Sections display as tabs (only the active one is visible), not as scroll anchors. To add a block type, update the union in `lib/types.ts` and add a `switch` case in `Section.tsx`.
 
+`components/PublicationPager.tsx` renders Previous/Next cards at the bottom of a detail page. It uses `getAdjacentPublicationPages(id)` in `lib/utils.ts`, which walks only publications where `hasPublicationPage()` is true, in `publications.ts` order (newest first). In `pages/Publication.tsx` the detail view (`PublicationDetail`) is keyed by publication id, so client-side navigation between papers resets the active tab. Keep that key if you restructure the page.
+
+Scrolling on publication pages is handled by `hooks/useScrollMemory.ts`. New navigation (PUSH/REPLACE) starts at the top. Back, Forward and reload (POP) restore the position saved for that history entry (`location.key`, kept in sessionStorage). While the hook is mounted it sets `history.scrollRestoration = "manual"`. It uses layout effects with `behavior: "instant"`, because the global `scroll-behavior: smooth` in `App.css` would otherwise animate the jump. The home page doesn't use the hook: its Navbar scrolls to `#hash` or to `#top`.
+
 Home page SEO keywords use `getFirstAuthorPublications()`.
 
 ## Theming (light / dark)

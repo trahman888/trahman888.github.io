@@ -70,6 +70,24 @@ export const getPublicationContent = (publicationId: string) => {
   return publication?.pageContent && isAllowPublicationPage() ? publication : null;
 };
 
+/** True when `publication` has a detail page (same rules as getPublicationContent, without the warning). */
+export const hasPublicationPage = (publication: Publication | null) =>
+  !!publication?.pageContent && isAllowPublicationPage() && isFirstAuthor(publication);
+
+/**
+ * Previous / next publications that have a detail page, in list order
+ * (publications.ts is newest-first, so "previous" is newer and "next" is older).
+ */
+export const getAdjacentPublicationPages = (publicationId: string) => {
+  const pages = publications.filter(hasPublicationPage);
+  const index = pages.findIndex((pub) => pub.id === publicationId);
+  if (index === -1) return { previous: null, next: null };
+  return {
+    previous: pages[index - 1] ?? null,
+    next: pages[index + 1] ?? null,
+  };
+};
+
 //get publications where has first author is heroname, and return their page content
 export const getFirstAuthorPublications = () => {
   return publications.filter((pub) => isFirstAuthor(pub));

@@ -10,7 +10,7 @@ import { PublicationLinks } from "./PublicationLinks";
 import type { PublicationCategory } from "../lib/types";
 import { GOOGLE_SCHOLAR_AUTHOR_ID } from "../lib/constants";
 
-export default function Publications() {
+export default function Publications({ page = "home" }: { page?: "home" | "publication" }) {
   const [filter, setFilter] = useState<"All" | PublicationCategory>("All");
 
   const filtered = useMemo(() => {
@@ -34,11 +34,13 @@ export default function Publications() {
           transition={{ duration: 0.5 }}
           className="flex flex-col gap-3"
         >
-          <div className="flex items-center gap-3 text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
-            <span className="text-slate-400">03</span>
-            <span className="inline-block h-px w-8 bg-slate-300" />
-            Research
-          </div>
+          {page === "home" && (
+            <div className="flex items-center gap-3 text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
+              <span className="text-slate-400">03</span>
+              <span className="inline-block h-px w-8 bg-slate-300" />
+              Research
+            </div>
+          )}
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900">
             Selected publications
           </h2>
