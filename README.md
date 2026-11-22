@@ -4,6 +4,8 @@ A modern, static React portfolio for [Tanzila Rahman](https://scholar.google.com
 
 Built with React 19, TypeScript, Vite, Tailwind CSS v4, framer-motion and recharts. There is no backend: all content lives in data files under `src/data/`, and the site deploys to GitHub Pages via GitHub Actions.
 
+[![trahman888/trahman888.github.io, explained in a one-minute video](https://gitdiagram.com/api/video/file?username=trahman888&repo=trahman888.github.io&format=poster)](https://gitdiagram.com/trahman888/trahman888.github.io/video)
+
 ## Project structure
 
 ```
